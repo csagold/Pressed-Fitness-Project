@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<nav th:fragment="mainNav" class="navbar navbar-expand-lg" style="color: red">
+    <a class="navbar-brand" th:href="@{~/home}">Pressd</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="planDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false"><i class="fas fa-dumbbell"></i>
+                    Plans
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" th:href="@{~/workouts}">View Workout Plans</a>
+                    <a class="dropdown-item" th:href="@{~/workouts/create}">Create a Plan</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="findDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false"><i class="far fa-compass"></i>
+                    Find
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item"  th:href="@{~/coaches}">Trainers</a>
+                    <a class="dropdown-item"  th:href="@{~/partners}">Buddies</a>
+                    <a class="dropdown-item"  th:href="@{~/clients}">Clients</a>
+                    <a class="dropdown-item"  th:href="@{~/posts}">View All</a>
+                    <hr style="border-top: 1px solid #5b21a9; margin: 0; background: #171819">
+                    <a class="dropdown-item" th:href="@{~/posts/create}">Create a Post</a>
+                </div>
+            </li>
+            <th:block sec:authorize="isAuthenticated()">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{~/users/profile/}"><i class="fas fa-user-alt"></i> Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{~/messages}"><i class="fas fa-envelope"></i> Inbox</a>
+                </li>
+            </th:block>
+            <th:block sec:authorize="!isAuthenticated()">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{~/sign-up}"><i class="fas fa-user-plus"></i> Sign-up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{~/login}"><i class="fas fa-sign-in-alt"></i> Login</a>
+                </li>
+            </th:block>
+            <th:block sec:authorize="isAuthenticated()">
+                <li>
+                    <form th:action="@{/logout}" th:method="POST">
+                        <button id="logout"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    </form>
+                </li>
+            </th:block>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{~/about}"><i class="fas fa-heartbeat"></i></i> About</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" th:action="@{/search}" th:method="POST">
+
+
+                <input class="form-control" type="search" placeholder="Search" name="term" aria-label="Search" style="border-radius: 3px 0px 0px 3px; border: 1px solid #fff; box-shadow: none; transition: none">
+
+                    <button class="submit-button" type="submit" style="height: 38px; width: 39px; border-radius: 0px 3px 3px 0px; border-top-width: 2px;"><i style="height: 17px; width: 17px" class="fas fa-search"></i></button>
+        </form>
+    </div>
+</nav>
+<script th:include="fragments/script"></script>
+</body>
+</html>

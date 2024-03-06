@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: main-head('Send')"></head>
+<body  class="thread">
+<nav th:replace="fragments/navbar :: mainNav"></nav>
+<section class="send d-flex flex-column justify-items-center align-content-center" id="send">
+    <div class="bg-overlay1"></div>
+    <div class="container">
+        <form th:action="@{'/messages/send/' + ${to_id}}" th:method="POST" th:object="${message}">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    <h2 class="text-white">Send new message to <span th:text="${to.username}"></span></h2>
+                    <div class="mb-3">
+                        <label class="form-label" for="body" style="color: black;"> Your message
+                            <textarea rows="10" class="form-control" th:field="*{body}" type="textarea" id="body"
+                                      placeholder="Type something..."></textarea></label>
+                    </div>
+                    <button  class="submit-button" type="submit">Send
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<footer th:replace="fragments/footer :: main-footer"></footer>
+</body>
+</html>

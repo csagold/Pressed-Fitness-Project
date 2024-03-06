@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: main-head('Create Comment')"></head>
+<body class="profile-page">
+<nav th:replace="fragments/navbar :: mainNav"></nav>
+<section class="d-flex flex-column justify-content-center align-items-center" id="comment">
+    <div class="container">
+        <div th:if="${comment.id == 0}">
+            <form th:action="@{'/workouts/'+${id}+'/comments/create'}" th:method="POST" th:object="${comment}">
+                <h1>Add your comment</h1>
+                <div>
+
+                    <label for="body" class="form-label">Comment</label>
+                    <textarea class="form-control" rows="6" th:field="*{body}" id="body"
+                              placeholder="Your comment here...." required></textarea>
+                    <button class="submit-button">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</section>
+
+<footer th:replace="fragments/footer :: main-footer"></footer>
+</body>
+</html>

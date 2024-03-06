@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: main-head('Error')"></head>
+<body>
+<nav th:replace="fragments/navbar :: mainNav"></nav>
+<main class="container">
+	<div>
+		<h2>Status: <span th:text="${error.ErrorCode}"></span></h2>
+		<p th:text="${error.ErrorMessage}"></p>
+	</div>
+</main>
+<script>
+</script>
+<footer th:replace="fragments/footer :: main-footer"></footer>
+</body>
+</html>
