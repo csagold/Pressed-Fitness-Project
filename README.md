@@ -17,4 +17,3 @@
 
 
 3. If you want to automatically run the included database seeder file, add the following line to your application.properties file: <code>seed.db=true</code>
-# Pressed-Fitness-Project
